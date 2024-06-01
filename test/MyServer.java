@@ -5,18 +5,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 
-//////////////////////////////////////////////////////////////////////////////
-//MyServer
-public class MyServer {
-    // פורט
-    int port;
-    // client handler
-    ClientHandler ch;
-    // עצירה
-    volatile boolean stop;
 
-    /////////////////////////////////////////////////////////////////////////////////////////
-    // קונסטרקטור
+public class MyServer {
+    int port;
+    ClientHandler ch;
+    volatile boolean stop;
 
     MyServer(int port, ClientHandler ch) {
         this.port = port;
@@ -24,25 +17,20 @@ public class MyServer {
         stop = false;
     }
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-    // start
+   
     void start() {
         new Thread(() -> runServer()).start();
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // פונקציית ריצת השרת
+    
     private void runServer() {
-        // פותחים סוקט
         ServerSocket server = null;
         try {
-            // פותחים שרת
             server = new ServerSocket(port);
             server.setSoTimeout(1000);
-            // לולאת while
+            
             while (!stop) {
                 try {
-                    // פתייחת סוקט
                     Socket client = server.accept();
                     try {
                         ch.handleClient(client.getInputStream(), client.getOutputStream());
@@ -62,8 +50,6 @@ public class MyServer {
         }
     }
 
-    //////////////////////////////////////////////
-    // סגירה של התהליך
     void close() {
         stop = true;
     }

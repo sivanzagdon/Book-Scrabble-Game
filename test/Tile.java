@@ -2,13 +2,13 @@ package test;
 
 import java.util.Random;
 
-//Tile
+
 public class Tile {
-    // משתנים
+    
     public final char letter;
     public final int score;
 
-    // קונסטרקטור
+
     private Tile(char letter, int score) {
         this.letter = letter;
         this.score = score;
@@ -44,7 +44,6 @@ public class Tile {
     // Bag
     public static class Bag {
         private static final int LETTERS_AMOUT = 98;
-        // תיק סינגלטון
         private static Bag bagSingelton = null;
         private int[] lettersQuantity;
         private Tile[] letters;
@@ -53,7 +52,7 @@ public class Tile {
 
         private int lettersInBag;
 
-        // קונסטרקטור
+
         private Bag() {
             int[] initialLetterQuantity = { 9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2,
                     1 };
@@ -71,7 +70,7 @@ public class Tile {
             lettersQuantityLimit = initialLetterQuantity.clone();
         }
 
-        // הגרלת רנדומלי
+        
         public Tile getRand() {
 
             if (lettersInBag == 0) {
@@ -90,7 +89,7 @@ public class Tile {
             return letters[randomLetterIndex];
         }
 
-        // getBag
+        
         public static Bag getBag() {
             if (bagSingelton == null) {
                 bagSingelton = new Bag();
@@ -99,12 +98,12 @@ public class Tile {
             return bagSingelton;
         }
 
-        // getQuantities
+        
         public int[] getQuantities() {
             return lettersQuantity.clone();
         }
 
-        // put
+        
         public void put(Tile tile) {
 
             int letterIndex = tile.letter - 'A';

@@ -1,19 +1,14 @@
 package test;
 
 import java.util.Arrays;
-
-//מילה
 public class Word {
-    // משתנים
+    
     private Tile[] tiles;
-    // שורה
     private int row;
-    // עמודה
     private int col;
-    // האם אנכית או לא
     private boolean vertical;
 
-    // קונסטרקטור
+
     public Word(Tile[] tiles, int row, int col, boolean vertical) {
         this.tiles = new Tile[tiles.length];
         for (int i = 0; i < tiles.length; i++) {

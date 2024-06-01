@@ -6,18 +6,12 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/////////////////////////////////////////////////////////////////////////////
-//ClientHandler
+
 public class BookScrabbleHandler implements ClientHandler {
-    // DictionaryManager
     DictionaryManager dm;
-    // PrintWriter
     PrintWriter out;
-    // Scanner
     Scanner in;
 
-    //////////////////////////////////////////////////////////////////////////////
-    // גיבוב
     @Override
     public void handleClient(InputStream inFromClient, OutputStream outToClient) {
         out = new PrintWriter(outToClient);
@@ -35,8 +29,7 @@ public class BookScrabbleHandler implements ClientHandler {
         out.println(wordExists ? "true" : "false");
         out.flush();
     }
-    ////////////////////////////////////////////////////////////////////////////
-    // סגירה
+   
 
     @Override
     public void close() {

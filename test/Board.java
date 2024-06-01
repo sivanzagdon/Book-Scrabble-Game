@@ -2,20 +2,14 @@ package test;
 
 import java.util.ArrayList;
 
-//Board
+
 public class Board {
-    // משתנים:
-    private static Board boardSingelton = null; // סינגלטון
-    // לוח משחק:
+    private static Board boardSingelton = null; 
     Tile[][] board;
-    // לוח בונוסים:
     String[][] bonusSquares;
-    // מיקום המילה הראשונה על הלוח:
     boolean firstWordPlacedOnBoard;
 
-    // קונסטקטור:
     private Board() {
-        // העתק של לוח הבונוסים:
         String[][] bonusSquaresCopy = {
                 { "Red", null, null, "LightBlue", null, null, null, "Red", null, null, null, "LightBlue", null, null,
                         "Red" },
@@ -57,12 +51,10 @@ public class Board {
         firstWordPlacedOnBoard = false;
     }
 
-    // getTile
     public Tile[][] getTiles() {
         return board.clone();
     }
 
-    // getBoard
     public static Board getBoard() {
         if (boardSingelton == null) {
             boardSingelton = new Board();
@@ -71,7 +63,6 @@ public class Board {
         return boardSingelton;
     }
 
-    // isWordFitInBoard
     private boolean isWordFitInBoard(Word word) {
         int row = word.getRow();
         int col = word.getCol();
@@ -98,7 +89,6 @@ public class Board {
         return true;
     }
 
-    // boardLegal
     public boolean boardLegal(Word word) {
         if (!isWordFitInBoard(word)) {
             return false;
@@ -115,7 +105,6 @@ public class Board {
         return true;
     }
 
-    // isWordLeanOnTile
     private boolean isWordLeanOnTile(Word word) {
         if (!firstWordPlacedOnBoard) {
             return true;
@@ -128,7 +117,6 @@ public class Board {
         return false;
     }
 
-    // isWordAdjacentToTile
     private boolean isWordAdjacentToTile(Word word) {
 
         int row = word.getRow();
@@ -159,7 +147,6 @@ public class Board {
         return isAdjacent;
     }
 
-    // isWordOverLapTile
     private boolean isWordOverLapTile(Word word) {
         int wordLength = word.getTiles().length;
         int row = word.getRow();
@@ -178,7 +165,6 @@ public class Board {
         return false;
     }
 
-    // tileAboveTheWord
     private boolean tileAboveTheWord(Word word) {
         if (word.getRow() + 1 <= board.length) {
             return false;
@@ -197,7 +183,6 @@ public class Board {
         return false;
     }
 
-    // tileUnderTheWord
     private boolean tileUnderTheWord(Word word) {
         if (word.getRow() - 1 < 0) {
             return false;
@@ -216,7 +201,6 @@ public class Board {
         return false;
     }
 
-    // tileRightToWord
     private boolean tileRightToWord(Word word) {
         if (word.getCol() + 1 <= board.length) {
             return false;
@@ -235,7 +219,6 @@ public class Board {
         return false;
     }
 
-    // tileLeftToWord
     private boolean tileLeftToWord(Word word) {
         if (word.getCol() - 1 < 0) {
             return false;
@@ -254,7 +237,6 @@ public class Board {
         return false;
     }
 
-    // dictionaryLegal
     public boolean dictionaryLegal(Word word) {
         return true;
     }
@@ -298,7 +280,7 @@ public class Board {
             }
         }
 
-        // Taking the word out of the board
+    
         for (int i = 0; i < wordTiles.length; i++) {
             if (wordTiles[i] != null) {
                 board[isVertical ? row + i : row][isVertical ? col : col + i] = null;

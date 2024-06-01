@@ -4,20 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/////////////////////////////////////////////////////////////////////////////////
-//מילון
 public class Dictionary {
-    // מילה קיימת
+    
     CacheManager existsWords;
-    // המילה לא קיימת
     CacheManager notExistsWords;
-    // ctpr
     BloomFilter bf;
-    // names
     String[] fileNames;
 
-    ///////////////////////////////////////////////////////////////////////////////////
-    // קונסטרקטור
     public Dictionary(String... fileNames) {
         existsWords = new CacheManager(400, new LRU());
         notExistsWords = new CacheManager(100, new LFU());
@@ -29,10 +22,8 @@ public class Dictionary {
         }
     }
 
-    //////////////////////////////////////////////////////////////////////////////////
-    // QUERY
+   
     public boolean query(String word) {
-        // האם קיים
         if (existsWords.query(word)) {
             return true;
         } else if (notExistsWords.query(word)) {
@@ -48,8 +39,7 @@ public class Dictionary {
         return false;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // פונקציה בוליאניצ
+   
     public boolean challenge(String word) {
         try {
             if (IOSearcher.search(word, fileNames)) {
@@ -64,8 +54,7 @@ public class Dictionary {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    // הוספת מילה
+    
     private void addFileWords(String fileName) {
         BufferedReader reader = null;
         try {
